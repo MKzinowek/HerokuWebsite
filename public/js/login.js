@@ -12,8 +12,8 @@ loginForm.addEventListener("submit", async(e) => {
     const password = passwordInput.value
     const data = { email, password }
 
-    const url = "http://localhost:3001/users/login"
-    //const url = 'https://<<your-api-server-domain>>/users/login'
+    const url = "http://localhost:3000/users/login"
+ //   const url = 'https://https://mikayla-app-api.herokuapp.com/users/login'
 
     const options = {
         method: "POST",
