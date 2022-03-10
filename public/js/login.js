@@ -1,10 +1,10 @@
 const protocol = window.location.protocol
 const host = window.location.host
 
-const loginForm = document.querySelector("#login-form")
-const emailInput = document.querySelector("#email-field")
-const passwordInput = document.querySelector("#password-field")
-
+const loginForm = document.querySelector("#loginForm")
+const emailInput = document.querySelector("#email")
+const passwordInput = document.querySelector("#password")
+console.log(loginForm)
 loginForm.addEventListener("submit", async(e) => {
     e.preventDefault()
 
@@ -12,8 +12,8 @@ loginForm.addEventListener("submit", async(e) => {
     const password = passwordInput.value
     const data = { email, password }
 
-    const url = "http://localhost:3000/users/login"
- //   const url = 'https://https://mikayla-app-api.herokuapp.com/users/login'
+    const url = 'http://localhost:2008/users/login'
+   // const url = 'https://https://mikayla-kzin-web-page/users/login'
 
     const options = {
         method: "POST",

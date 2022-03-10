@@ -14,9 +14,9 @@ createAccountForm.addEventListener('submit', async(e) => {
     const name = usernameInput.value;
     const password = passwordInput.value;
     let data = { email, password, name }
-
-    //const url = 'http://localhost:3001/users'
-    const url = 'https://https://mikayla-app-api.herokuapp.com/users'
+    console.log(data)
+    const url = 'http://localhost:2008/users'
+ //   const url = 'https://https://mikayla-kzin-web-page/users'
 
     const options = {
         method: 'POST',
@@ -25,6 +25,8 @@ createAccountForm.addEventListener('submit', async(e) => {
         },
         body: JSON.stringify(data)
     }
+
+    
 
     let response = await fetch(url, options)
     data = await response.json()
@@ -41,3 +43,5 @@ createAccountForm.addEventListener('submit', async(e) => {
         window.location.replace(newUrl)
     }
 })
+
+

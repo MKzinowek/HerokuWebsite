@@ -4,30 +4,32 @@
 <head>
 {{>head}}
 <title>Login</title>
-<script defer src="/js/create-account.js"></script>
+<script defer src="js/create-account.js"></script>
 </head>
 <body>
   <title>Login</title>
     {{>navbar}}
   </div>
-<form action="action_page.php" id="createAccountForm">
+<form  id="createAccountForm">
     <div class="container">
       <h1>Register</h1>
       <p>Fill in the form to create an account!.</p>
       <hr>
   
-      <label for="email" id="email"><b>Email</b></label>
+      <label for="email"><b>Email</b></label>
       <input type="text" placeholder="Enter Email" name="email" id="email" required>
   
-      <label for="psw" id="password"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" id="password" required>
 
-      <label for='username' id="username"><b>Username</b></label>
-      <input type="username" placeholder= "username" required>
+      <label for='username'><b>Username</b></label>
+      <input type="username" placeholder= "username" id="username" required>
   
       <button type="submit" class="registerbtn">Register</button>
       <p id="message" class="message"></p>
     </div>
-    {{>footer}}
+
   </form>
+
+  {{>footer}}
 </body>
