@@ -1,12 +1,15 @@
-const displayAccountItem = document.querySelector("#viewAccount")
+const displayAccountItem = document.querySelector("#displayAccountItem")
+const deleteAccount= document.querySelector("#deleteAccount")
+const logoutAccount = document.querySelector("#logoutAccount")
+const modifyAccountModalSaveButton = document.querySelector("#modifyAccountModalSaveButton")
 
 displayAccountItem.addEventListener("click", async(e) => {
     e.preventDefault()
 
     const token = localStorage.getItem("token")
 
-    const url = "http://localhost:3000/users/me"
-    //const url = 'https://https://mikayla-kzin-app.herokuapp.com/users/me'
+    const url = "http://localhost:3001/users/me"
+    //const url = 'https://rachel-web-api-app.herokuapp.com/users/me'
 
     const options = {
         method: "GET",
@@ -29,20 +32,16 @@ displayAccountItem.addEventListener("click", async(e) => {
     }
 })
 
-
-const displayAccountItem = document.querySelector("#deleteAccount")
-
-displayAccountItem.addEventListener("click", async(e) => {
+deleteAccount.addEventListener("click", async(e) => {
     e.preventDefault()
 
     const token = localStorage.getItem("token")
 
-    const url = "http://localhost:3000/users/me"
-    //const url = 'https://https://mikayla-kzin-app.herokuapp.com/users/me'
-    console.log('before delete')
+    const url = "http://localhost:3001/users/me"
+    //const url = 'https://rachel-web-api-app.herokuapp.com/users/me'
 
     const options = {
-        method: "DELETE",
+        method: "DEL",
         headers: {
             Authorization: `Bearer ${token}`,
         },
@@ -53,23 +52,22 @@ displayAccountItem.addEventListener("click", async(e) => {
     if (response.ok) {
         if (response.status === 200) {
             const data = await response.json()
-            localStorage.clear(data);
-            location.href = 'http:\\localhost:3000/login';
+
+            const contentArea = document.querySelector("#contentArea")
+            contentArea.innerHTML = `Name: ${data.name} <br>Email: ${data.email}`
         }
     } else {
         console.log("HTTP-Error: " + response.status)
     }
 })
 
-const displayAccountItem = document.querySelector("#logoutAccount")
-
-displayAccountItem.addEventListener("click", async(e) => {
+logoutAccount.addEventListener("click", async(e) => {
     e.preventDefault()
-
+    const app = express()
     const token = localStorage.getItem("token")
 
-    const url = "http://localhost:3000/users/me"
-    //const url = 'https://https://mikayla-kzin-app.herokuapp.com/users/me'
+    const url = "http://localhost:3001/users/me"
+    //const url = 'https://rachel-web-api-app.herokuapp.com/users/me'
 
     const options = {
         method: "POST",
@@ -82,10 +80,51 @@ displayAccountItem.addEventListener("click", async(e) => {
 
     if (response.ok) {
         if (response.status === 200) {
-            localStprage.remove(token)
-            location.href = 'http:\\localhost:3000/login';
+            const data = await response.json()
+
+            const contentArea = document.querySelector("#contentArea")
+            contentArea.innerHTML = `Name: ${data.name} <br>Email: ${data.email}`
         }
     } else {
         console.log("HTTP-Error: " + response.status)
     }
+})
+
+modifyAccountModalSaveButton.addEventListener("click", async(e) => {
+    e.preventDefault()
+
+    const token = localStorage.getItem("token")
+
+    const url = "http://localhost:3000/users/me"
+        //const url = 'https://n0code-web-api-4.herokuapp.com/users/me'
+
+    const nameInput = document.querySelector("#nameInput")
+    const passwordInput = document.querySelector("#passwordInput")
+    const name = nameInput.value
+    const password = passwordInput.value
+    const requestData = {...name && { name }, ...password && { password } }
+    //console.log(requestData)
+
+    const options = {
+        method: "PATCH",
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestData),
+    }
+
+    let response = await fetch(url, options)
+
+    if (response.status === 200) {
+        const contentArea = document.querySelector("#contentArea")
+        contentArea.innerHTML = `Saved successful.`
+    } else {
+        console.log("HTTP-Error: " + response.status)
+    }
+
+    const modal = document.querySelector("#modifyAccountModal")
+    bootstrap.Modal.getInstance(modal).hide()
+
+    const form = document.querySelector("#modifyAccountForm").reset()
 })
