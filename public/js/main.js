@@ -1,16 +1,25 @@
 const displayAccountItem = document.querySelector("#viewAccount")
 const deleteAccount = document.querySelector("#deleteAccount")
 const logoutAccount = document.querySelector("#logoutAccount")
-const viewTasks = document.querySelector("#viewTasks")   //just added for viewing tasks
+const viewTasks = document.querySelector("#viewTasks")
 const modifyAccountModalSaveButton = document.querySelector("#modifyAccountModalSaveButton")
-const modifyTaskModalSaveButton = document.querySelector("modifyTaskModalSaveButton")
+const modifyTaskModalSaveButton = document.querySelector("#modifyTaskModalSaveButton")
+const modifyTaskModalDeleteButton = document.querySelector("#modifyTaskModalDeleteButton")
 
 
+modifyTaskModalDeleteButton.addEventListener("click", async (e) => {
+    e.preventDefault()
+    function showAlert() {
+        alert ("Hello world!");
+    }
+})
+
+//retrieves undefined data
 viewTasks.addEventListener("click", async (e) => {
     e.preventDefault()
     const token = localStorage.getItem("token")
 
-    const url = "http://localhost:2008/users/me"
+    const url = "http://localhost:2008/tasks?limit=1"
 
     const options = {
         method: "GET",
@@ -28,7 +37,7 @@ viewTasks.addEventListener("click", async (e) => {
 
             const contentArea = document.querySelector("#taskArea")
 
-            contentArea.innerHTML = `Title: ${data.title} Completed: ${data.completed}`
+            contentArea.innerHTML = `Title: ${data[0].title} Completed: ${data[0].completed}`
 //}
         }
     } else {
@@ -36,10 +45,6 @@ viewTasks.addEventListener("click", async (e) => {
     }
 
 })
-
-
-
-
 
 displayAccountItem.addEventListener("click", async (e) => {
     e.preventDefault()
@@ -135,7 +140,7 @@ modifyAccountModalSaveButton.addEventListener("click", async (e) => {
 
     const token = localStorage.getItem("token")
 
-    const url = "http://localhost:3000/users/me"
+    const url = "http://localhost:2008/users/me"
 
     const nameInput = document.querySelector("#nameInput")
     const passwordInput = document.querySelector("#passwordInput")
@@ -168,19 +173,29 @@ modifyAccountModalSaveButton.addEventListener("click", async (e) => {
     const form = document.querySelector("#modifyAccountForm").reset()
 })
 
-
+//get by id
 modifyTaskModalSaveButton.addEventListener("click", async (e) => {
     e.preventDefault()
 
     const token = localStorage.getItem("token")
 
-    const url = "http://localhost:3000/users/me"
+    const url = "http://localhost:2008/tasks"
 
+    const idInput = document.querySelector('#idInput')
     const titleInput = document.querySelector("#titleInput")
-    const completedInput = document.querySelector("#CompletedInput")
+    const completedInput = document.querySelector("#completedInput")
+    const descriptionInput = document.querySelector('#description')
+    const id = idInput.value
     const title = titleInput.value
     const completed = completedInput.value
-    const requestData = { ...title && { title }, ...completed && { completed } }
+    const description = descriptionInput.value
+
+    const task = {
+        "_id" : id,
+        "title" : title,
+        "completed" : completed,
+        "description" : description
+    }
 
     const options = {
         method: "PATCH",
@@ -188,16 +203,18 @@ modifyTaskModalSaveButton.addEventListener("click", async (e) => {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(requestData),
+        body: JSON.stringify(task),
     }
-
+console.log(task)
     let response = await fetch(url, options)
 
     if (response.status === 200) {
-        const contentArea = document.querySelector("#task area")
-        contentArea.innerHTML = `Saved successful.`
+        console.log(response)
+        const taskArea = document.querySelector("#taskArea")
+        taskArea.innerHTML = `Saved successful.`
     } else {
         console.log("HTTP-Error: " + response.status)
+        console.log(e)
     }
 
     const modal = document.querySelector("#modifyTaskModal")

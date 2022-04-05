@@ -6,19 +6,24 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="modifyTasksForm">
-                <div class="mb-3">
-                    <label for="titleInput" class="form-label">Title</label>
-                    <input type="text" class="form-control" id="titleInput">
-                </div>
-                <div class="mb-3">
-                    <label for="CompletedInput" class="form-label">Completed</label>
-                    <input type="text" class="form-control" id="CompletedInput">
-                </div>
+                <form id="modifyTaskForm">
+                    <div class="mb-3">
+                        <label for="idInput" class="form-label">ID</label>
+                        <input type="text" class="form-control" id="idInput">
+                    </div>
+                    <div class="mb-3">
+                        <label for="titleInput" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="titleInput">
+                    </div>
+                    <div class="mb-3">
+                        <label for="completedInput" class="form-label">Completed</label>
+                        <input type="text" class="form-control" id="completedInput">
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button id="modifyTaskModalDeleteButton" type="button" class="btn btn-primary"> Delete Task </button>
                 <button id="modifyTaskModalSaveButton" type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
