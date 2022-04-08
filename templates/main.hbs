@@ -125,6 +125,11 @@
   </script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
+    integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
+    crossorigin="anonymous"></script>
+  <script defer src="js/main.js"></script>
   <style>
     .dropdown {
       position: static !important;
@@ -139,6 +144,8 @@
 </head>
 
 <body>
+  {{>modify_account_modal}}
+  {{>modify_task}}
   <div class="fluid-container">
     <center>
       <h1 style="color:green;padding:13px;">
@@ -148,7 +155,7 @@
       <br>
       <br>
       <nav class="navbar navbar-expand-lg navbar-dark
-						justify-content-between text-white" style="background-color: green;">
+						justify-content-between text-white" style="background-color: #255D07;">
         <p class="navbar-brand" href="#" style="margin-top: 15px;">
           Your journey starts here!
         </p>
@@ -161,55 +168,68 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown01">
 
           <ul class="navbar-nav ">
-            <a style="margin-left: 20px;margin-top: 7px;font-size: 18px;" href="#">Trips </a>
-            <a style="margin-left: 20px;margin-top: 7px;font-size: 18px;" href="#">Contact </a>
-            <a style="margin-left: 20px;margin-top: 7px;margin-right: 10px;font-size: 18px;  " href="#">About</a>
+            <a style="margin-left: 20px;margin-top: 7px;font-size: 18px;color: white;" href="#">Trips </a>
+            <a style="margin-left: 20px;margin-top: 7px;font-size: 18px;color: white;" href="#">Contact </a>
+            <a style="margin-left: 20px;margin-top: 7px;margin-right: 10px;font-size: 18px;color: white;"
+              href="#">About</a>
 
             <!--dropdown item of menu-->
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
+                aria-haspopup="true" aria-expanded="false" style="color: white;">
                 My Account
               </a>
 
               <!--dropdown sub items of menu-->
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a role="button" tabindex="0" id="viewAccount" class="dropdown-item">
-                  View Account
-                </a>
-                <a role="button" tabindex="0" id="logoutAccount" class="dropdown-item">
-                  Logout
-                </a>
+                <a role="button" tabindex="0" id="viewAccount" class="dropdown-item">View Account </a>
+                <!--Modify Task modal-->
+                <div class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modifyAccountModal">Modify Account
+                </div>
+                <!--Logout-->
+                <a role="button" tabindex="0" id="logoutAccount" class="dropdown-item"> Logout </a>
                 <div class="dropdown-divider"></div>
-                <a role="button" tabindex="0" id="deleteAccount" class="dropdown-item"> 
-                  Delete Account 
-                  </a>
+                <a role="button" tabindex="0" id="deleteAccount" class="dropdown-item">Delete Account </a>
               </div>
             </li>
             <li class="nav-item dropdown">
-              <a role="button" tabindex="0" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
+              <a role="button" tabindex="0" class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">
                 Tasks
               </a>
 
               <!--dropdown sub items of menu-->
               <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="max-width: 1366px;">
                 <a id="viewTasks" class="dropdown-item" href="/templates/tasksPage.hbs">
-                    View Tasks
+                  View Tasks
                 </a>
+                <a href="./tasksPage.hbs" id="viewTasks" class="dropdown-item" href="/templates/tasksPage.hbs">
+                  View Tasks2
+                </a>
+                <!--Modify Task modal-->
+                <div class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modifyTaskModal">Modify Task
+                </div>
+                <!--Adding Tasks-->
+                <a id="addTasks" class="dropdown-item" href="/templates/tasksPage.hbs">
+                  Add Tasks
+                </a>
+                <div class="dropdown-divider"></div>
+                  <a role="button" tabindex="0" id="deleteTask" class="dropdown-item">Delete Task </a>
               </div>
             </li>
           </ul>
         </div>
       </nav>
+      <div id="contentArea">
+        <p id="email"></p>
+        <p id="password"></p>
+      </div>
+      <div id="taskArea">
+        <p id="title"></p>
+        <p id="completed"></p>
+        <p id="description"></p>
+      </div>
     </center>
   </div>
-
-  <div id="contentArea">
-    <p id="email"></p>
-    <p id="password"></p>
-  </div>
-
 </body>
-
 </html>

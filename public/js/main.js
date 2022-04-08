@@ -2,19 +2,13 @@ const displayAccountItem = document.querySelector("#viewAccount")
 const deleteAccount = document.querySelector("#deleteAccount")
 const logoutAccount = document.querySelector("#logoutAccount")
 const viewTasks = document.querySelector("#viewTasks")
+const addTask = document.querySelector('#addTasks')
 const modifyAccountModalSaveButton = document.querySelector("#modifyAccountModalSaveButton")
 const modifyTaskModalSaveButton = document.querySelector("#modifyTaskModalSaveButton")
 const modifyTaskModalDeleteButton = document.querySelector("#modifyTaskModalDeleteButton")
 
 
-modifyTaskModalDeleteButton.addEventListener("click", async (e) => {
-    e.preventDefault()
-    function showAlert() {
-        alert ("Hello world!");
-    }
-})
 
-//retrieves undefined data
 viewTasks.addEventListener("click", async (e) => {
     e.preventDefault()
     const token = localStorage.getItem("token")
@@ -37,8 +31,13 @@ viewTasks.addEventListener("click", async (e) => {
 
             const contentArea = document.querySelector("#taskArea")
 
+            console.log(contentArea)
+
+            console.log(data)
+            if (data.length > 0){
             contentArea.innerHTML = `Title: ${data[0].title} Completed: ${data[0].completed}`
-//}
+            }
+
         }
     } else {
         console.log("HTTP-Error: " + response.status)
