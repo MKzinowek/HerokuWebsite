@@ -12,6 +12,7 @@ const assignmentPage = require('../routers/assignmentPage')
 const about = require('../routers/about')
 const contact = require('../routers/contact')
 const image = require('../routers/imagepage')
+const tasksPage = require('../routers/tasksPage')
 const _404Router = require('../routers/404')
 
 const app = express() 
@@ -37,6 +38,7 @@ app.use(assignmentPage)
 app.use(about)
 app.use(contact)
 app.use(image)
+app.use(tasksPage)
 
 app.use(_404Router)
 

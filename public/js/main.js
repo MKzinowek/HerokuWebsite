@@ -2,18 +2,69 @@ const displayAccountItem = document.querySelector("#viewAccount")
 const deleteAccount = document.querySelector("#deleteAccount")
 const logoutAccount = document.querySelector("#logoutAccount")
 const viewTasks = document.querySelector("#viewTasks")
-const addTask = document.querySelector('#addTasks')
 const modifyAccountModalSaveButton = document.querySelector("#modifyAccountModalSaveButton")
 const modifyTaskModalSaveButton = document.querySelector("#modifyTaskModalSaveButton")
 const modifyTaskModalDeleteButton = document.querySelector("#modifyTaskModalDeleteButton")
+const addTaskModalSaveButton = document.querySelector('#addTaskModalSaveButton')
 
 
+let skip = 0
 
+console.log(addTaskModalSaveButton)
+addTaskModalSaveButton.addEventListener("click", async (e) => {
+    e.preventDefault()
+
+    const token = localStorage.getItem("token")
+//const url = "http://localhost:2008/tasks"
+const url = "https://https://mikayla-kzin-web-page/tasks"
+
+
+    const titleInput = document.querySelector("#titleInputAdd")
+    const descriptionInput = document.querySelector("#completedDescriptionAdd")
+    const completedInput = document.querySelector("#completedInputAdd")
+
+ //   console.log(titleInput.value)
+ //   console.log(completedInput.value)
+ //   console.log(descriptionInput.value)
+
+    const data = {
+        "title": titleInput.value,
+        "completed": (completedInput.value === "true") ? "true" : "false"
+    }
+    if (descriptionInput.value != undefined) {
+        data.description = descriptionInput.value
+    }
+
+    const options = {
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    }
+    let response = await fetch(url, options)
+
+    if (response.status == 201) {
+        const modal = document.querySelector("#addTaskModal")
+        bootstrap.Modal.getInstance(modal).hide()
+        const form = document.querySelector("#addTaskForm").reset()
+
+    } else {
+        console.log("Error: " + response.status)
+    }
+})
+
+console.log(viewTasks)
 viewTasks.addEventListener("click", async (e) => {
     e.preventDefault()
     const token = localStorage.getItem("token")
+    console.log(viewTasks)
 
-    const url = "http://localhost:2008/tasks?limit=1"
+
+ //   const url = "http://localhost:2008/tasks?limit=1"
+    const url = "https://https://mikayla-kzin-web-page/tasks?limit=1"
+
 
     const options = {
         method: "GET",
@@ -34,8 +85,8 @@ viewTasks.addEventListener("click", async (e) => {
             console.log(contentArea)
 
             console.log(data)
-            if (data.length > 0){
-            contentArea.innerHTML = `Title: ${data[0].title} Completed: ${data[0].completed}`
+            if (data.length > 0) {
+                contentArea.innerHTML = `Title: ${data[0].title} Completed: ${data[0].completed}`
             }
 
         }
@@ -50,7 +101,9 @@ displayAccountItem.addEventListener("click", async (e) => {
     console.log('here')
     const token = localStorage.getItem("token")
 
-    const url = "http://localhost:2008/users/me"
+ //   const url = "http://localhost:2008/users/me"
+ const url = "https://https://mikayla-kzin-web-page/users/me"
+
 
     const options = {
         method: "GET",
@@ -82,7 +135,9 @@ deleteAccount.addEventListener("click", async (e) => {
 
     const token = localStorage.getItem("token")
 
-    const url = "http://localhost:2008/users/me"
+ //   const url = "http://localhost:2008/users/me"
+ const url = "https://https://mikayla-kzin-web-page/users/me"
+
 
     const options = {
         method: "DELETE",
@@ -112,7 +167,9 @@ logoutAccount.addEventListener("click", async (e) => {
 
     const token = localStorage.getItem("token")
 
-    const url = "http://localhost:2008/users/logout"
+  //  const url = "http://localhost:2008/users/logout"
+  const url = "https://https://mikayla-kzin-web-page/users/logout"
+
 
     const options = {
         method: "POST",
@@ -139,7 +196,9 @@ modifyAccountModalSaveButton.addEventListener("click", async (e) => {
 
     const token = localStorage.getItem("token")
 
-    const url = "http://localhost:2008/users/me"
+ //   const url = "http://localhost:2008/users/me"
+    const url = "https://https://mikayla-kzin-web-page/users/me"
+
 
     const nameInput = document.querySelector("#nameInput")
     const passwordInput = document.querySelector("#passwordInput")
@@ -178,7 +237,9 @@ modifyTaskModalSaveButton.addEventListener("click", async (e) => {
 
     const token = localStorage.getItem("token")
 
-    const url = "http://localhost:2008/tasks"
+ //   const url = "http://localhost:2008/tasks"
+ const url = "https://https://mikayla-kzin-web-page/tasks"
+
 
     const idInput = document.querySelector('#idInput')
     const titleInput = document.querySelector("#titleInput")
@@ -190,10 +251,10 @@ modifyTaskModalSaveButton.addEventListener("click", async (e) => {
     const description = descriptionInput.value
 
     const task = {
-        "_id" : id,
-        "title" : title,
-        "completed" : completed,
-        "description" : description
+        "_id": id,
+        "title": title,
+        "completed": completed,
+        "description": description
     }
 
     const options = {
@@ -204,7 +265,7 @@ modifyTaskModalSaveButton.addEventListener("click", async (e) => {
         },
         body: JSON.stringify(task),
     }
-console.log(task)
+    console.log(task)
     let response = await fetch(url, options)
 
     if (response.status === 200) {

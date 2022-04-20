@@ -1,117 +1,3 @@
-{{!
-<!DOCTYPE html>
-<html>
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
-    integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
-    crossorigin="anonymous"></script>
-  <script defer src="js/main.js"></script>
-  {{>head}}
-  {{!<style>
-    #htmlbody {
-      background-image: url("../public/images/ShenandoahWanderersLog.jpg");
-    }
-
-    .menuDropdownUl {
-      text-align: center;
-    }
-
-    ul li {
-      display: inline-block;
-      margin-right: 15px;
-      transition: all 0.3s ease-in-out;
-    }
-
-    ul li:hover a {
-      color: rgb(20, 141, 105);
-    }
-
-    ul li:hover a::before {
-      visibility: visible;
-      transform: scale(1, 1);
-    }
-
-    ul li a {
-      color: #999;
-      display: block;
-      padding: 0 7px 0 7px;
-      margin: 0 0 10px;
-      text-decoration: none;
-      position: relative;
-    }
-
-    ul li a::before {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 3px;
-      bottom: -10px;
-      left: 0px;
-      background-color: #058020;
-      transition: all 0.2s ease-in-out;
-      transform: scale(0, 0);
-      visibility: hidden;
-    }
-  </style>
-</head>
-
-<body>
-  {{>modify_account_modal}}
-  {{!
-  {{>modify_task}}
-  {{!
-  <nav>
-    <ul class="menuDropdownUl">
-      <li><a href="#">Trips </a></li>
-      <li><a href="#">Contact </a></li>
-      <li><a href="#">About</a></li>
-    </ul>
-    <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="flase">
-        My Account
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <li id="viewAccount" class="dropdown-item"> View Account </li>
-        <li id="deleteAccount" class="dropdown-item"> Delete Account </li>
-        <li><a href="#">try </a></li>
-        <li id="logoutAccount" class="dropdown-item"> Logout </li>
-      </div>
-      <ul class="menuDropdownUl">
-        <li id="viewAccount" class="dropdown-item"> View Account </li>
-        <li id="deleteAccount" class="dropdown-item"> Delete Account </li>
-        <li id="logoutAccount" class="dropdown-item"> Logout </li>
-        <li id="viewTasks" class="dropdown-item"> View Tasks </li>
-        <li>
-          <div class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modifyAccountModal">Modify Account
-          </div>
-          <div class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modifyTaskModal">Modify Task
-          </div>
-        </li>
-      </ul>
-  </nav>
-  <div id="contentArea">
-    <p id="email"></p>
-    <p id="password"></p>
-  </div>
-  <div id="taskArea">
-    <p id="title"></p>
-    <p id="id"></p>
-    <p id="completed"></p>
-    <p id="description"> </p>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
-    integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
-    crossorigin="anonymous"></script>
-</body>
-
-}}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -129,7 +15,14 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
     integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
     crossorigin="anonymous"></script>
-  <script defer src="js/main.js"></script>
+  <script type="text/javascript" defer src="js/main.js"></script>
+  <script>
+    var x;
+    x = document.getElementById("taskNextButton")
+    function getNext(){
+      
+    }
+  </script>
   <style>
     .dropdown {
       position: static !important;
@@ -146,6 +39,7 @@
 <body>
   {{>modify_account_modal}}
   {{>modify_task}}
+  {{>add_task}}
   <div class="fluid-container">
     <center>
       <h1 style="color:green;padding:13px;">
@@ -193,28 +87,27 @@
               </div>
             </li>
             <li class="nav-item dropdown">
-              <a role="button" tabindex="0" class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
+              <a role="button" tabindex="0" class="nav-link dropdown-toggle" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white;">
                 Tasks
               </a>
 
               <!--dropdown sub items of menu-->
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="max-width: 1366px;">
-                <a id="viewTasks" class="dropdown-item" href="/templates/tasksPage.hbs">
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown"  id="viewTasks" style="max-width: 1366px;">
+                <a class="dropdown-item" href="/tasksPage">
                   View Tasks
-                </a>
-                <a href="./tasksPage.hbs" id="viewTasks" class="dropdown-item" href="/templates/tasksPage.hbs">
-                  View Tasks2
                 </a>
                 <!--Modify Task modal-->
                 <div class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modifyTaskModal">Modify Task
                 </div>
                 <!--Adding Tasks-->
-                <a id="addTasks" class="dropdown-item" href="/templates/tasksPage.hbs">
+           <!--     <a id="addTasks" class="dropdown-item" href="/templates/tasksPage.hbs">
                   Add Tasks
-                </a>
+                </a> -->
+                <div class="dropdown-item" data-bs-toggle="modal" data-bs-target="#addTaskModal">Add Task
+                </div>
                 <div class="dropdown-divider"></div>
-                  <a role="button" tabindex="0" id="deleteTask" class="dropdown-item">Delete Task </a>
+                <a role="button" tabindex="0" id="deleteTask" class="dropdown-item">Delete Task </a>
               </div>
             </li>
           </ul>
@@ -224,12 +117,15 @@
         <p id="email"></p>
         <p id="password"></p>
       </div>
-      <div id="taskArea">
+        <div id="taskArea" style="outline:5px green;">
         <p id="title"></p>
         <p id="completed"></p>
         <p id="description"></p>
+        <p id="taskNextButton" style="margin-right: 10%;"></p>
+      </div>
       </div>
     </center>
   </div>
 </body>
+
 </html>
