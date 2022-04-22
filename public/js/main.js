@@ -16,7 +16,7 @@ addTaskModalSaveButton.addEventListener("click", async (e) => {
 
     const token = localStorage.getItem("token")
 //const url = "http://localhost:2008/tasks"
-//const url = "https://https://mikayla-kzin-web-page/tasks"
+//const url = "https://https://mikayla-kzin-web-page.herokuapp.com/tasks"
 const url = 'https://mikayla-app-api.herokuapp.com/tasks'
 
 
@@ -65,7 +65,7 @@ viewTasks.addEventListener("click", async (e) => {
 
 
  //   const url = "http://localhost:2008/tasks?limit=1"
- //   const url = "https://https://mikayla-kzin-web-page/tasks?limit=1"
+ //   const url = "https://https://mikayla-kzin-web-page.herokuapp.com/tasks?limit=1"
     const url = 'https://mikayla-app-api.herokuapp.com/tasks?limit=1'
 
 
@@ -106,7 +106,7 @@ displayAccountItem.addEventListener("click", async (e) => {
     const token = localStorage.getItem("token")
 
  //   const url = "http://localhost:2008/users/me"
- //const url = "https://https://mikayla-kzin-web-page/users/me"
+ //const url = "https://mikayla-kzin-web-page.herokuapp.com/users/me"
  const url = 'https://mikayla-app-api.herokuapp.com/users/me'
 
 
@@ -142,7 +142,7 @@ deleteAccount.addEventListener("click", async (e) => {
     const token = localStorage.getItem("token")
 
  //   const url = "http://localhost:2008/users/me"
-// const url = "https://https://mikayla-kzin-web-page/users/me"
+// const url = "https://mikayla-kzin-web-page.herokuapp.com/users/me"
  const url = 'https://mikayla-app-api.herokuapp.com/users/me'
 
 
@@ -176,7 +176,7 @@ logoutAccount.addEventListener("click", async (e) => {
     const token = localStorage.getItem("token")
 
   //  const url = "http://localhost:2008/users/logout"
-//  const url = "https://https://mikayla-kzin-web-page/users/logout"
+//  const url = "https://mikayla-kzin-web-page.herokuapp.com/users/logout"
   const url = 'https://mikayla-app-api.herokuapp.com/users/logout'
 
 
@@ -209,7 +209,7 @@ modifyAccountModalSaveButton.addEventListener("click", async (e) => {
  //   const url = "http://localhost:2008/users/me"
  //const url = 'https://mikayla-app-api.herokuapp.com/users/me'
 
-    const url = "https://https://mikayla-kzin-web-page/users/me"
+    const url = "https://https://mikayla-kzin-web-page.herokuapp.com/users/me"
 
 
     const nameInput = document.querySelector("#nameInput")
@@ -250,7 +250,7 @@ modifyTaskModalSaveButton.addEventListener("click", async (e) => {
     const token = localStorage.getItem("token")
 
  //   const url = "http://localhost:2008/tasks"
- const url = 'https://mikayla-kzin-web-page/tasks'
+ const url = 'https://mikayla-kzin-web-page.herokuapp.com/tasks'
  //const url = 'https://mikayla-app-api.herokuapp.com/tasks'
 
 
