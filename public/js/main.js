@@ -295,3 +295,61 @@ modifyTaskModalSaveButton.addEventListener("click", async (e) => {
 
     const form = document.querySelector("#modifyTaskForm").reset()
 })
+
+async function uploadAvatar() {
+    const token = localStorage.getItem("token")
+
+    const url = `${API_URL}/users/me/avatar`
+    console.log(url)
+    
+    const input = document.querySelector("#avatarInput")
+
+    const formData = new FormData();
+    formData.append('avatar', input.files[0]);
+
+    const options = {
+        method: "POST",
+        body: formData,
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+
+    let response = await fetch(url, options)
+
+    if (response.status === 200) {
+        console.log("upload successful")
+        //loadAvatar()
+    } else {
+        console.log("Error uploading avatar: " + response.status)
+    }
+}
+
+async function uploadAvatar() {
+    const token = localStorage.getItem("token")
+
+    const url = `${API_URL}/users/me/avatar`
+    console.log(url)
+    
+    const input = document.querySelector("#avatarInput")
+
+    const formData = new FormData();
+    formData.append('avatar', input.files[0]);
+
+    const options = {
+        method: "POST",
+        body: formData,
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+
+    let response = await fetch(url, options)
+
+    if (response.status === 200) {
+        console.log("upload successful")
+        //loadAvatar()
+    } else {
+        console.log("Error uploading avatar: " + response.status)
+    }
+}

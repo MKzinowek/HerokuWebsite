@@ -11,6 +11,7 @@ loginForm.addEventListener("submit", async(e) => {
     const email = emailInput.value
     const password = passwordInput.value
     const data = { email, password }
+    console.log(data)
 
   //  const url = 'http://localhost:2008/users/login'
  // const url = "https://mikayla-kzin-web-page.herokuapp.com/users/login"
