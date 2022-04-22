@@ -214,10 +214,12 @@ modifyAccountModalSaveButton.addEventListener("click", async (e) => {
 
     const nameInput = document.querySelector("#nameInput")
     const passwordInput = document.querySelector("#passwordInput")
+    const avatarInput = document.querySelector('#AvatarInput')
     const name = nameInput.value
     const password = passwordInput.value
-    const requestData = { ...name && { name }, ...password && { password } }
-    //console.log(requestData)
+    const avatar = avatarInput.value
+    const requestData = { ...name && { name }, ...password && { password }, ...avatar && {avatar} }
+    console.log(requestData)
 
     const options = {
         method: "PATCH",
