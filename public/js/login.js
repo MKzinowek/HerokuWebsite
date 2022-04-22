@@ -14,8 +14,7 @@ loginForm.addEventListener("submit", async(e) => {
 
   //  const url = 'http://localhost:2008/users/login'
  // const url = "https://https://mikayla-kzin-web-page/login"
-
-  const url = 'https://mikayla-app-api/users/login'
+const url = 'https://mikayla-app-api.herokuapp.com/login'
 
     const options = {
         method: "POST",
