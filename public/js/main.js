@@ -213,12 +213,12 @@ modifyAccountModalSaveButton.addEventListener("click", async (e) => {
 
 
     const nameInput = document.querySelector("#nameInput")
+    const avatarInput = document.querySelector("#avatarInput")
     const passwordInput = document.querySelector("#passwordInput")
-    const avatarInput = document.querySelector('#AvatarInput')
     const name = nameInput.value
     const password = passwordInput.value
     const avatar = avatarInput.value
-    const requestData = { ...name && { name }, ...password && { password }, ...avatar && {avatar} }
+    const requestData = { ...name && { name }, ...password && { password }, ...avatar && { avatar }}
     console.log(requestData)
 
     const options = {
@@ -301,9 +301,7 @@ modifyTaskModalSaveButton.addEventListener("click", async (e) => {
 async function uploadAvatar() {
     const token = localStorage.getItem("token")
 
-    const url = `${API_URL}/users/me/avatar`
-    console.log(url)
-    
+    const url = 'https://mikayla-app-api.herokuapp.com/users/me/avatar'
     const input = document.querySelector("#avatarInput")
 
     const formData = new FormData();
@@ -318,29 +316,23 @@ async function uploadAvatar() {
     }
 
     let response = await fetch(url, options)
+    console.log(response)
 
     if (response.status === 200) {
         console.log("upload successful")
-        //loadAvatar()
+        loadAvatar()
     } else {
         console.log("Error uploading avatar: " + response.status)
     }
 }
 
-async function uploadAvatar() {
+async function loadAvatar() {
     const token = localStorage.getItem("token")
 
-    const url = `${API_URL}/users/me/avatar`
-    console.log(url)
-    
-    const input = document.querySelector("#avatarInput")
-
-    const formData = new FormData();
-    formData.append('avatar', input.files[0]);
+    const url = 'https://mikayla-app-api.herokuapp.com/users/me/avatar'
 
     const options = {
-        method: "POST",
-        body: formData,
+        method: "GET",
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -349,9 +341,20 @@ async function uploadAvatar() {
     let response = await fetch(url, options)
 
     if (response.status === 200) {
-        console.log("upload successful")
-        //loadAvatar()
-    } else {
-        console.log("Error uploading avatar: " + response.status)
+        
+        const imageBlob = await response.blob()
+        const imageObjectURL = URL.createObjectURL(imageBlob);
+
+        const image = document.createElement('img')
+        image.src = imageObjectURL
+        image.className = 'profile-pic'
+
+        const container = document.getElementById("accountDropdown")
+        container.prepend(image)
+    }
+    else {
+        console.log("HTTP-Error: " + response.status)
     }
 }
+
+loadAvatar() 
