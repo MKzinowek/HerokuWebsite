@@ -333,7 +333,7 @@ async function loadAvatar() {
         image.src = imageObjectURL
         image.className = 'avatar'
 
-        const container = document.getElementById("avatarDisplay")
+        const container = document.getElementById("nav-item dropdown")
         container.prepend(image)
     }
     else {
