@@ -105,11 +105,7 @@ displayAccountItem.addEventListener("click", async (e) => {
     console.log('here')
     const token = localStorage.getItem("token")
 
- //   const url = "http://localhost:2008/users/me"
  const url = "https://mikayla-kzin-web-page.herokuapp.com/users/me"
- //const url = 'https://mikayla-app-api.herokuapp.com/users/me'
-
-
 
     const options = {
         method: "GET",
@@ -127,7 +123,7 @@ displayAccountItem.addEventListener("click", async (e) => {
 
             const contentArea = document.querySelector("#contentArea")
 
-            contentArea.innerHTML = `Name: ${data.name} <br>Email: ${data.email}`
+            contentArea.innerHTML = `Name: ${data.name} <br>Email: ${data.email} Avatar: ${data.avatar}`  //added here
 
         }
     } else {
@@ -141,11 +137,7 @@ deleteAccount.addEventListener("click", async (e) => {
 
     const token = localStorage.getItem("token")
 
- //   const url = "http://localhost:2008/users/me"
  const url = "https://mikayla-kzin-web-page.herokuapp.com/users/me"
-// const url = 'https://mikayla-app-api.herokuapp.com/users/me'
-
-
 
     const options = {
         method: "DELETE",
@@ -175,11 +167,7 @@ logoutAccount.addEventListener("click", async (e) => {
 
     const token = localStorage.getItem("token")
 
-  //  const url = "http://localhost:2008/users/logout"
  const url = "https://mikayla-kzin-web-page.herokuapp.com/users/logout"
- // const url = 'https://mikayla-app-api.herokuapp.com/users/logout'
-
-
 
     const options = {
         method: "POST",
@@ -205,9 +193,6 @@ modifyAccountModalSaveButton.addEventListener("click", async (e) => {
     e.preventDefault()
 
     const token = localStorage.getItem("token")
-
- //   const url = "http://localhost:2008/users/me"
- //const url = 'https://mikayla-app-api.herokuapp.com/users/me'
 
     const url = "https://https://mikayla-kzin-web-page.herokuapp.com/users/me"
 
@@ -245,7 +230,6 @@ modifyAccountModalSaveButton.addEventListener("click", async (e) => {
     const form = document.querySelector("#modifyAccountForm").reset()
 })
 
-//get by id
 modifyTaskModalSaveButton.addEventListener("click", async (e) => {
     e.preventDefault()
 
@@ -347,9 +331,9 @@ async function loadAvatar() {
 
         const image = document.createElement('img')
         image.src = imageObjectURL
-        image.className = 'profile-pic'
+        image.className = 'avatar'
 
-        const container = document.getElementById("accountDropdown")
+        const container = document.getElementById("avatarDisplay")
         container.prepend(image)
     }
     else {
